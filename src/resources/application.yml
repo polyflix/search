@@ -1,5 +1,5 @@
 server:
-  port: 5000
+  port: 8080
 
 telemetry:
   port: 4317
@@ -7,10 +7,16 @@ telemetry:
 
 kafka:
   client:
-    clientId: todo-backend
+    clientId: search-service
     brokers:
       - port: 9092
         host: localhost
   consumer:
-    groupId: todo-consumer
+    groupId: search-consumer
     allowAutoTopicCreation: true
+
+elasticsearch:
+  auth:
+    username: elastic
+    password: elasticsearch
+  nodes: http://localhost:9200
