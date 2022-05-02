@@ -1,8 +1,8 @@
 import { KafkaOptions, Transport } from "@nestjs/microservices";
 
-export const KAFKA_CLIENT = "KAFKA_CLIENT";
-
-export const microserviceConfig = (config): KafkaOptions => ({
+export const getKafkaConfiguration = (
+  config: Record<string, any>
+): KafkaOptions => ({
   transport: Transport.KAFKA,
   options: {
     client: {

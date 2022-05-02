@@ -1,22 +1,23 @@
 import { Global, Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { ClientProxyFactory } from "@nestjs/microservices";
-import { KAFKA_CLIENT, microserviceConfig } from "src/main/config/kafka.config";
+import { getKafkaConfiguration } from "../../config/kafka.config";
+
+export const KAFKA_CLIENT = "KAFKA_CLIENT";
 
 @Global()
 @Module({
+  exports: [KAFKA_CLIENT],
   providers: [
     {
       provide: KAFKA_CLIENT,
+      inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         return ClientProxyFactory.create(
-          microserviceConfig(configService.get("kafka"))
+          getKafkaConfiguration(configService.get("kafka"))
         );
-      },
-      inject: [ConfigService]
+      }
     }
-  ],
-
-  exports: [KAFKA_CLIENT]
+  ]
 })
-export class KafkaModule {}
+export class MessagingModule {}
