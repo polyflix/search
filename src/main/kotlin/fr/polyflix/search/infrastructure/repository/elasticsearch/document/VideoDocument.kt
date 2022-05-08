@@ -8,6 +8,7 @@ import java.util.UUID
 
 @Document(indexName = "videos")
 data class VideoDocument(
-    @Id val id: UUID,
-    @Field(type=FieldType.Text) val title: String
+    @Id val id: UUID?,
+    @Field(type=FieldType.Text) val title: String?,
+    @Field(type=FieldType.Text) val description: String?
 )

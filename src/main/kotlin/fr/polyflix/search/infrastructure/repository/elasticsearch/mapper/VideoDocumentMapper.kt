@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component
 @Component
 class VideoDocumentMapper: DocumentMapper<Video, VideoDocument> {
     override fun toDocument(video: Video): VideoDocument {
-        return VideoDocument(video.id, video.title)
+        return VideoDocument(video.id, video.title, video.description)
     }
 }
