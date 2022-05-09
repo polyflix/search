@@ -1,10 +1,9 @@
 package fr.polyflix.search.infrastructure.messaging.kafka.event
 
 import fr.polyflix.search.domain.entity.Video
-import java.util.UUID
 
 class VideoEvent(
-    id: UUID,
+    id: String,
     trigger: Trigger,
     val fields: Video
 ) : ResourceEvent(id, trigger) {

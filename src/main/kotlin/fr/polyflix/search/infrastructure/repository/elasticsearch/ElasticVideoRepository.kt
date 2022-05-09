@@ -19,7 +19,7 @@ class ElasticVideoRepository(private val repository: SpringElasticVideoRepositor
         val document = mapper.toDocument(video)
         try {
             repository.save(document)
-            logger.info("Video document successfully indexed, id=${document.id}, title=${document.title}")
+            logger.info("Video document successfully indexed, id=${document.slug}, title=${document.title}")
         } catch (e: Exception) {
             logger.error("Failed to save the document into Elasticsearch. Details: ${e.message}")
         }
@@ -29,7 +29,7 @@ class ElasticVideoRepository(private val repository: SpringElasticVideoRepositor
      * Delete a video into Elasticsearch.
      * If something went wrong, the error will be logged.
      */
-    override fun deleteOne(id: UUID) {
+    override fun deleteOne(id: String) {
         try {
             repository.deleteById(id)
             logger.info("If it existed, the video document (id=$id) has been successfully deleted")
