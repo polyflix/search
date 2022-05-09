@@ -2,13 +2,12 @@ package fr.polyflix.search.infrastructure.repository.elasticsearch
 
 import fr.polyflix.search.domain.entity.Video
 import fr.polyflix.search.domain.repository.VideoRepository
-import fr.polyflix.search.infrastructure.repository.elasticsearch.mapper.VideoDocumentMapper
+import fr.polyflix.search.infrastructure.repository.elasticsearch.document.VideoDocument
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
-class ElasticVideoRepository(private val repository: SpringElasticVideoRepository, private val mapper: VideoDocumentMapper): VideoRepository {
+class ElasticVideoRepository(private val repository: SpringElasticVideoRepository): VideoRepository {
     private val logger = LoggerFactory.getLogger(ElasticVideoRepository::class.java)
 
     /**
@@ -16,7 +15,7 @@ class ElasticVideoRepository(private val repository: SpringElasticVideoRepositor
      * If something went wrong, it will simply log an error.
      */
     override fun createOne(video: Video) {
-        val document = mapper.toDocument(video)
+        val document = VideoDocument.fromDomain(video)
         try {
             repository.save(document)
             logger.info("Video document successfully indexed, id=${document.slug}, title=${document.title}")
