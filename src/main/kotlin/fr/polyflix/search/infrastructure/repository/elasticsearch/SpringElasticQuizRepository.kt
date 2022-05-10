@@ -1,0 +1,6 @@
+package fr.polyflix.search.infrastructure.repository.elasticsearch
+
+import fr.polyflix.search.infrastructure.repository.elasticsearch.document.QuizDocument
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+
+interface SpringElasticQuizRepository: ElasticsearchRepository<QuizDocument, String>

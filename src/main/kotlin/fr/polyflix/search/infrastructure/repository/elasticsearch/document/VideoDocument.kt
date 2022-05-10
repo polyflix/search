@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Document
 import org.springframework.data.elasticsearch.annotations.Field
 import org.springframework.data.elasticsearch.annotations.FieldType
 
-@Document(indexName = "videos")
+@Document(indexName = Indices.VIDEO)
 data class VideoDocument (
     @Id val slug: String?,
     @Field(type=FieldType.Text) val title: String?,
