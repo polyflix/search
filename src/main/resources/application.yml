@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  profiles:
+    active: local
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -11,3 +13,6 @@ spring:
       video:
         topic: polyflix.legacy.video
         group-id: search-video-cg
+
+seeders:
+  enabled: false
