@@ -1,0 +1,72 @@
+swagger: "2.0"
+info:
+  description: "This OpenAPI documents the Polyflix Search service APIs."
+  version: "1.0.0"
+  title: "Polyflix Search Service"
+tags:
+- name: "search"
+  description: "Search for indexed resources"
+schemes:
+- "http"
+paths:
+  /search:
+    get:
+      tags:
+      - "search"
+      summary: "Do a search request"
+      operationId: "search"
+      parameters:
+        - name: page
+          description: "The page to display."
+          required: true
+          type: integer
+          in: query
+        - name: size
+          description: "The number of results per page"
+          required: true
+          type: integer
+          in: query
+        - name: q
+          description: "The search query"
+          required: true
+          type: string
+          in: query
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Search has been successfully executed"
+          schema:
+            $ref: "#/definitions/SearchResponse"
+          
+definitions:
+  Video:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      title:
+        type: "string"
+  Quiz:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+  SearchResponse:
+    type: "object"
+    properties:
+      totalElements:
+        type: "integer"
+      totalPages:
+        type: "integer"
+      currentPage:
+        type: "integer"
+      results:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "string"
