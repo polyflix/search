@@ -19,11 +19,11 @@ class ElasticsearchVideoSeeder(
         if (!seedersEnabled) return
 
         val seeds = listOf(
-            VideoDocument("my-super-video", "My Super Video", "This is a super video !"),
-            VideoDocument("video-de-polytech", "Video de Polytech", "Elle est pas mal cette video !"),
-            VideoDocument("learn-spring-with-kotlin", "Learn Spring with Kotlin", "How to learn spring with kotlin"),
-            VideoDocument("nest-is-deprecated", "Nest is deprecated", "It's a joke"),
-            VideoDocument("la-bataille-des-dwarfs", "La bataille des dwarfs", "bizar")
+            VideoDocument("my-super-video", "My Super Video", "This is a super video !", "https://avatars.githubusercontent.com/u/47056759?v=4"),
+            VideoDocument("video-de-polytech", "Video de Polytech", "Elle est pas mal cette video !", "https://avatars.githubusercontent.com/u/47056759?v=4"),
+            VideoDocument("learn-spring-with-kotlin", "Learn Spring with Kotlin", "How to learn spring with kotlin", "https://avatars.githubusercontent.com/u/47056759?v=4"),
+            VideoDocument("nest-is-deprecated", "Nest is deprecated", "It's a joke", "https://avatars.githubusercontent.com/u/47056759?v=4"),
+            VideoDocument("la-bataille-des-dwarfs", "La bataille des dwarfs", "bizar", "https://avatars.githubusercontent.com/u/47056759?v=4")
         )
 
         logger.info("Cleaning index '${Indices.VIDEO}'")

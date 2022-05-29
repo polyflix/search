@@ -17,8 +17,8 @@ class KafkaVideoConsumer(private val videoRepository: VideoRepository) {
         logger.info("Received new event: $event")
 
         when (event.trigger) {
-            Trigger.CREATE, Trigger.UPDATE -> videoRepository.createOne(event.fields)
-            Trigger.DELETE -> videoRepository.deleteOne(event.id)
+            Trigger.CREATE, Trigger.UPDATE -> videoRepository.createOne(event.payload)
+            Trigger.DELETE -> videoRepository.deleteOne(event.payload.id!!)
         }
 
         ack.acknowledge()

@@ -11,7 +11,7 @@ spring:
       key-deserializer:  org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       video:
-        topic: polyflix.legacy.video
+        topic: polyflix.video
         group-id: search-video-cg
 
 seeders:
