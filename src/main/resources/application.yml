@@ -16,6 +16,9 @@ spring:
       quiz:
         topic: polyflix.quiz
         group-id: search-quiz-cg
+      user:
+        topic: polyflix.user
+        group-id: search-user-cg
 
 seeders:
   enabled: false

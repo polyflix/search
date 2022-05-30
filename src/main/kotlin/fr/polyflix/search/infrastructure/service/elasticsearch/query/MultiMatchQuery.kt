@@ -1,6 +1,7 @@
 package fr.polyflix.search.infrastructure.service.elasticsearch.query
 
 import fr.polyflix.search.infrastructure.repository.elasticsearch.document.QuizDocument
+import fr.polyflix.search.infrastructure.repository.elasticsearch.document.UserDocument
 import fr.polyflix.search.infrastructure.repository.elasticsearch.document.VideoDocument
 import org.elasticsearch.common.unit.Fuzziness
 import org.elasticsearch.index.query.QueryBuilders
@@ -13,7 +14,8 @@ class MultiMatchQuery {
     companion object {
         private val resources = listOf(
             VideoDocument,
-            QuizDocument
+            QuizDocument,
+            UserDocument
         )
 
         fun create(query: String, pageable: Pageable, excludedFields: List<String> = listOf()): NativeSearchQuery {

@@ -2,6 +2,7 @@ package fr.polyflix.search.infrastructure.messaging.kafka.configuration
 
 import fr.polyflix.search.infrastructure.messaging.kafka.configuration.consumer.ConsumerProps
 import fr.polyflix.search.infrastructure.messaging.kafka.event.QuizEvent
+import fr.polyflix.search.infrastructure.messaging.kafka.event.UserEvent
 import fr.polyflix.search.infrastructure.messaging.kafka.event.VideoEvent
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -19,6 +20,20 @@ import org.springframework.kafka.support.serializer.JsonDeserializer
 @Configuration
 class KafkaConfiguration(private val kafkaProperties: KafkaConfigurationProperties) {
 
+    @Bean
+    fun kafkaUserContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, UserEvent> {
+        val factory = ConcurrentKafkaListenerContainerFactory<String, UserEvent>()
+
+        // Set the concurrency of the consumer
+        factory.setConcurrency(kafkaProperties.consumer.user.concurrency)
+        factory.setCommonErrorHandler(KafkaConsumerErrorHandler())
+
+        factory.consumerFactory = createConsumerFactory<UserEvent>(kafkaProperties.consumer.user)
+        factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
+        factory.containerProperties.isSyncCommits = true
+
+        return factory
+    }
     @Bean
     fun kafkaVideoContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, VideoEvent> {
         val factory = ConcurrentKafkaListenerContainerFactory<String, VideoEvent>()
