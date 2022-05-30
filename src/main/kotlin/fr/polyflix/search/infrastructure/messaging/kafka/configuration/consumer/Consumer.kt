@@ -5,4 +5,5 @@ data class Consumer(
     val keyDeserializer: String,
     val valueDeserializer: String,
     val video: ConsumerProps,
+    val quiz: ConsumerProps,
 )

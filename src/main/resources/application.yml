@@ -13,6 +13,9 @@ spring:
       video:
         topic: polyflix.video
         group-id: search-video-cg
+      quiz:
+        topic: polyflix.quiz
+        group-id: search-quiz-cg
 
 seeders:
   enabled: false

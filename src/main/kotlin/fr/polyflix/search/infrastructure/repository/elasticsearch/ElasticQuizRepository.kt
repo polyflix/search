@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component
 
 @Component
 class ElasticQuizRepository(private val repository: SpringElasticQuizRepository) : QuizRepository {
-    private val logger = LoggerFactory.getLogger(ElasticVideoRepository::class.java)
+    private val logger = LoggerFactory.getLogger(ElasticQuizRepository::class.java)
 
     /**
-     * Save a video into Elasticsearch.
+     * Save a quiz into Elasticsearch.
      * If something went wrong, it will simply log an error.
      */
     override fun createOne(quiz: Quiz) {
@@ -25,7 +25,7 @@ class ElasticQuizRepository(private val repository: SpringElasticQuizRepository)
     }
 
     /**
-     * Delete a video into Elasticsearch.
+     * Delete a quiz into Elasticsearch.
      * If something went wrong, the error will be logged.
      */
     override fun deleteOne(id: String) {

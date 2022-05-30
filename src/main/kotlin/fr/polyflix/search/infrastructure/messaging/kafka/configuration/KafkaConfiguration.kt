@@ -1,6 +1,7 @@
 package fr.polyflix.search.infrastructure.messaging.kafka.configuration
 
 import fr.polyflix.search.infrastructure.messaging.kafka.configuration.consumer.ConsumerProps
+import fr.polyflix.search.infrastructure.messaging.kafka.event.QuizEvent
 import fr.polyflix.search.infrastructure.messaging.kafka.event.VideoEvent
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -27,6 +28,20 @@ class KafkaConfiguration(private val kafkaProperties: KafkaConfigurationProperti
         factory.setCommonErrorHandler(KafkaConsumerErrorHandler())
 
         factory.consumerFactory = createConsumerFactory<VideoEvent>(kafkaProperties.consumer.video)
+        factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
+        factory.containerProperties.isSyncCommits = true
+
+        return factory
+    }
+    @Bean
+    fun kafkaQuizContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, QuizEvent> {
+        val factory = ConcurrentKafkaListenerContainerFactory<String, QuizEvent>()
+
+        // Set the concurrency of the consumer
+        factory.setConcurrency(kafkaProperties.consumer.quiz.concurrency)
+        factory.setCommonErrorHandler(KafkaConsumerErrorHandler())
+
+        factory.consumerFactory = createConsumerFactory<QuizEvent>(kafkaProperties.consumer.quiz)
         factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
         factory.containerProperties.isSyncCommits = true
 
