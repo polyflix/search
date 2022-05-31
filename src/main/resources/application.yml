@@ -4,6 +4,15 @@ server:
 spring:
   profiles:
     active: local
+  application:
+    name: search
+  sleuth:
+    otel:
+      config:
+        trace-id-ratio-based: 1.0
+      exporter:
+        otlp:
+          endpoint: http://localhost:4317
   kafka:
     bootstrap-servers: localhost:29092
     consumer:
