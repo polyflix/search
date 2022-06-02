@@ -1,0 +1,10 @@
+spring:
+  sleuth:
+    otel:
+      exporter:
+        otlp:
+          endpoint: http://otel-opentelemetry-collector:4317
+  kafka:
+    bootstrap-servers: kafka-0.kafka-headless:9092,kafka-1.kafka-headless:9092,kafka-2.kafka-headless:9092
+  elasticsearch:
+    uris: http://elasticsearch-ingest:9200
