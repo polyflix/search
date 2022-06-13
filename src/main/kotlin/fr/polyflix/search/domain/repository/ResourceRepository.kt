@@ -1,9 +1,6 @@
 package fr.polyflix.search.domain.repository
 
-import fr.polyflix.search.domain.entity.Quiz
-import fr.polyflix.search.domain.entity.Searchable
-import fr.polyflix.search.domain.entity.User
-import fr.polyflix.search.domain.entity.Video
+import fr.polyflix.search.domain.entity.*
 
 interface ResourceRepository<T: Searchable> {
     /**
@@ -20,3 +17,5 @@ interface ResourceRepository<T: Searchable> {
 typealias VideoRepository = ResourceRepository<Video>
 typealias QuizRepository = ResourceRepository<Quiz>
 typealias UserRepository = ResourceRepository<User>
+typealias ModuleRepository = ResourceRepository<Module>
+typealias CourseRepository = ResourceRepository<Course>

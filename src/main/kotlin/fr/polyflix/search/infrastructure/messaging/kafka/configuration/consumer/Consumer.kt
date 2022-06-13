@@ -6,5 +6,7 @@ data class Consumer(
     val valueDeserializer: String,
     val video: ConsumerProps,
     val quiz: ConsumerProps,
-    val user: ConsumerProps
+    val user: ConsumerProps,
+    val course: ConsumerProps,
+    val module: ConsumerProps
 )

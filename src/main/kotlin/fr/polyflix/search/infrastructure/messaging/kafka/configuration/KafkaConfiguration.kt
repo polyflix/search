@@ -1,9 +1,7 @@
 package fr.polyflix.search.infrastructure.messaging.kafka.configuration
 
 import fr.polyflix.search.infrastructure.messaging.kafka.configuration.consumer.ConsumerProps
-import fr.polyflix.search.infrastructure.messaging.kafka.event.QuizEvent
-import fr.polyflix.search.infrastructure.messaging.kafka.event.UserEvent
-import fr.polyflix.search.infrastructure.messaging.kafka.event.VideoEvent
+import fr.polyflix.search.infrastructure.messaging.kafka.event.*
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.context.annotation.Bean
@@ -57,6 +55,36 @@ class KafkaConfiguration(private val kafkaProperties: KafkaConfigurationProperti
         factory.setCommonErrorHandler(KafkaConsumerErrorHandler())
 
         factory.consumerFactory = createConsumerFactory<QuizEvent>(kafkaProperties.consumer.quiz)
+        factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
+        factory.containerProperties.isSyncCommits = true
+
+        return factory
+    }
+
+    @Bean
+    fun kafkaModuleContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, ModuleEvent> {
+        val factory = ConcurrentKafkaListenerContainerFactory<String, ModuleEvent>()
+
+        // Set the concurrency of the consumer
+        factory.setConcurrency(kafkaProperties.consumer.module.concurrency)
+        factory.setCommonErrorHandler(KafkaConsumerErrorHandler())
+
+        factory.consumerFactory = createConsumerFactory<ModuleEvent>(kafkaProperties.consumer.module)
+        factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
+        factory.containerProperties.isSyncCommits = true
+
+        return factory
+    }
+
+    @Bean
+    fun kafkaCourseContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, CourseEvent> {
+        val factory = ConcurrentKafkaListenerContainerFactory<String, CourseEvent>()
+
+        // Set the concurrency of the consumer
+        factory.setConcurrency(kafkaProperties.consumer.course.concurrency)
+        factory.setCommonErrorHandler(KafkaConsumerErrorHandler())
+
+        factory.consumerFactory = createConsumerFactory<CourseEvent>(kafkaProperties.consumer.course)
         factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
         factory.containerProperties.isSyncCommits = true
 

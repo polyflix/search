@@ -28,6 +28,12 @@ spring:
       user:
         topic: polyflix.user
         group-id: search-user-cg
+      course:
+        topic: polyflix.catalog.course
+        group-id: search-course-cg
+      module:
+        topic: polyflix.catalog.module
+        group-id: search-module-cg
 
 seeders:
   enabled: false

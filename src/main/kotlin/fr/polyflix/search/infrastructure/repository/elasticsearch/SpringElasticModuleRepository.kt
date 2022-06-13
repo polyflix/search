@@ -1,0 +1,6 @@
+package fr.polyflix.search.infrastructure.repository.elasticsearch
+
+import fr.polyflix.search.infrastructure.repository.elasticsearch.document.ModuleDocument
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
+
+interface SpringElasticModuleRepository: ElasticsearchRepository<ModuleDocument, String>
