@@ -15,6 +15,12 @@ class KafkaQuizConsumer(private val quizRepository: QuizRepository) {
     fun onMessage(event: QuizEvent, ack: Acknowledgment) {
         logger.info("Received new event: $event")
 
+        // Ignore draft elements and non public elements
+        if (event.payload.draft == true || event.payload.visibility != "public") {
+            logger.info("The quiz ${event.payload.id} isn't public or it is in draft state. Ignoring it.")
+            return ack.acknowledge()
+        }
+
         when (event.trigger) {
             Trigger.CREATE, Trigger.UPDATE -> quizRepository.createOne(event.payload)
             Trigger.DELETE -> quizRepository.deleteOne(event.payload.id!!)

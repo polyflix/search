@@ -37,3 +37,7 @@ spring:
 
 seeders:
   enabled: false
+
+logging:
+  level:
+    org.elasticsearch.client.RestClient: error
