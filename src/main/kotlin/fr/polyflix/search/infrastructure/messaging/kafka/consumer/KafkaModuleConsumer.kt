@@ -18,6 +18,7 @@ class KafkaModuleConsumer(private val moduleRepository: ModuleRepository) {
         // Ignore draft elements and non public elements
         if (event.payload.draft == true || event.payload.visibility != "public") {
             logger.info("The module ${event.payload.id} isn't public or it is in draft state. Ignoring it.")
+            moduleRepository.deleteOne(event.payload.id!!)
             return ack.acknowledge()
         }
 

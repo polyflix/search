@@ -22,6 +22,7 @@ class KafkaCourseConsumer(private val courseRepository: CourseRepository) {
         // Ignore draft elements and non public elements
         if (event.payload.draft == true || event.payload.visibility != "public") {
             logger.info("The course ${event.payload.id} isn't public or it is in draft state. Ignoring it.")
+            courseRepository.deleteOne(event.payload.id!!)
             return ack.acknowledge()
         }
 

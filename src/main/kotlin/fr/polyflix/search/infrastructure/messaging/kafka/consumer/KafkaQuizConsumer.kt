@@ -18,6 +18,7 @@ class KafkaQuizConsumer(private val quizRepository: QuizRepository) {
         // Ignore draft elements and non public elements
         if (event.payload.draft == true || event.payload.visibility != "public") {
             logger.info("The quiz ${event.payload.id} isn't public or it is in draft state. Ignoring it.")
+            quizRepository.deleteOne(event.payload.id!!)
             return ack.acknowledge()
         }
 
