@@ -13,13 +13,13 @@ data class CourseDocument (
     @Id val id: String?,
     @Field(type=FieldType.Text) val name: String?,
     @Field(type=FieldType.Text) val slug: String?,
-    @Field(type=FieldType.Text) val shortDescription: String?,
+    @Field(type=FieldType.Text) val description: String?,
 ): DomainMapper<Course> {
     /**
      * Map the CourseDocument to the Course domain entity
      */
     override fun toDomain(): Course {
-        return Course(id, name, slug, shortDescription)
+        return Course(id, name, slug, description)
     }
 
     companion object: DocumentMapper<Course, CourseDocument> {
@@ -27,7 +27,7 @@ data class CourseDocument (
          * Create a QuizDocument from a Quiz domain entity
          */
         override fun fromDomain(domain: Course): CourseDocument {
-            return CourseDocument(domain.id, domain.name, domain.slug, domain.shortDescription)
+            return CourseDocument(domain.id, domain.name, domain.slug, domain.description)
         }
     }
 }
