@@ -7,4 +7,4 @@ spring:
   kafka:
     bootstrap-servers: kafka-0.kafka-headless:9092
   elasticsearch:
-    uris: http://elasticsearch-ingest:9200
+    uris: http://elasticsearch-ingest-hl:9200
