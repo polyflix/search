@@ -7,5 +7,5 @@ on:
     branches: [ "main" ]
 
 jobs:
-  call-starter-workflow:
-    uses: polyflix/.github/workflow-templates/spring-ci.yml
+  call-spring-boot-base-workflow:
+    uses: polyflix/.github/.github/workflows/spring-ci.yml@main
