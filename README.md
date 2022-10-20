@@ -2,6 +2,7 @@
 
 This repository contains the source code of the Polyflix Search microservice. The service is written in Kotlin by using the Spring Boot framework.
 
+
 ## Dependencies
 
 To run this project locally, you must match the following requirements : 
