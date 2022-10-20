@@ -1,0 +1,11 @@
+name: Polyflix Search CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  call-starter-workflow:
+    uses: polyflix/.github/workflow-templates/spring-ci.yml
