@@ -2,13 +2,14 @@ name: Polyflix Search CI
 
 on:
   push:
-    branches: 
+    branches:
       - main
     tags:
-      - 'v*'
+      - "v*"
   pull_request:
-    branches: 
+    branches:
       - main
+  workflow_dispatch:
 
 jobs:
   spring-boot-ci:
